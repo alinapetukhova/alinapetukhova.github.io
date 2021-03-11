@@ -1,0 +1,874 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>textcl.outliers_detection API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>textcl.outliers_detection</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from __future__ import division, print_function
+import pandas as pd
+import numpy as np
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn import preprocessing
+import nltk
+from nltk.corpus import stopwords
+from scipy import stats
+
+
+class R_pca:
+    &#34;&#34;&#34;
+    RPCA implementation from [this](https://github.com/dganguli/robust-pca) source
+    &#34;&#34;&#34;
+    def __init__(self, D, mu=None, lmbda=None):
+        self.D = D
+        self.S = np.zeros(self.D.shape)
+        self.Y = np.zeros(self.D.shape)
+
+        if mu:
+            self.mu = mu
+        else:
+            self.mu = np.prod(self.D.shape) / (4 * np.linalg.norm(self.D, ord=1))
+
+        self.mu_inv = 1 / self.mu
+
+        if lmbda:
+            self.lmbda = lmbda
+        else:
+            self.lmbda = 1 / np.sqrt(np.max(self.D.shape))
+
+    @staticmethod
+    def frobenius_norm(M):
+        return np.linalg.norm(M, ord=&#39;fro&#39;)
+
+    @staticmethod
+    def shrink(M, tau):
+        return np.sign(M) * np.maximum((np.abs(M) - tau), np.zeros(M.shape))
+
+    def svd_threshold(self, M, tau):
+        U, S, V = np.linalg.svd(M, full_matrices=False)
+        return np.dot(U, np.dot(np.diag(self.shrink(S, tau)), V))
+
+    def fit(self, tol=None, max_iter=1000, iter_print=100):
+        iter = 0
+        err = np.Inf
+        Sk = self.S
+        Yk = self.Y
+        Lk = np.zeros(self.D.shape)
+
+        if tol:
+            _tol = tol
+        else:
+            _tol = 1E-7 * self.frobenius_norm(self.D)
+
+        #this loop implements the principal component pursuit (PCP) algorithm
+        #located in the table on page 29 of https://arxiv.org/pdf/0912.3599.pdf
+        while (err &gt; _tol) and iter &lt; max_iter:
+            Lk = self.svd_threshold(
+                self.D - Sk + self.mu_inv * Yk, self.mu_inv)                            #this line implements step 3
+            Sk = self.shrink(
+                self.D - Lk + (self.mu_inv * Yk), self.mu_inv * self.lmbda)             #this line implements step 4
+            Yk = Yk + self.mu * (self.D - Lk - Sk)                                      #this line implements step 5
+            err = self.frobenius_norm(self.D - Lk - Sk)
+            iter += 1
+
+        self.L = Lk
+        self.S = Sk
+        return Lk, Sk
+
+
+# function to use rpca
+def rpca_implementation(bag_of_words):
+    &#34;&#34;&#34;
+    Function to use RPCA for getting outlier_matrix. It uses [this](https://github.com/dganguli/robust-pca) RPCA implementation
+
+    ---
+
+    **Arguments**\n
+    `bag_of_words` (array of shape (n_documents, n_words)): document-word matrix.
+
+    ---
+
+    **Returns**\n
+    `outlier_matrix` (array of shape (n_documents, n_words)): outliers matrix.
+    &#34;&#34;&#34;
+
+    rpca = R_pca(np.array(bag_of_words))
+    _, outlier_matrix = rpca.fit(max_iter=10000, iter_print=100)
+    return outlier_matrix
+
+
+def tonmf(A, k, alpha, beta):
+    &#34;&#34;&#34;
+    Function to use TONMF for getting outlier_matrix. Solves the equation
+    A = ||A-Z-WH||_F^2 + alpha ||Z||_2,1 + beta ||H||_1
+    A is a sparse matrix of size mxn
+    Z matrix is the outlier matrix.
+
+    ---
+
+    **Arguments**\n
+    `A` (array of shape (n_documents, n_words)): document-word matrix.\n
+    `k` (int): rank.\n
+    `alpha` (float): defines the weight for the outlier matrix Z.\n
+    `beta` (float): approximation parameter.
+
+    ---
+
+    **Returns**\n
+    `Z` (array of shape (n_documents, n_words)): Outlier matrix.\n
+    `W` (array of shape (n_documents, rank)): Term-Topic matrix.\n
+    `H` (array of shape (rank, n_words)): Topic-Document matrix.\n
+    `errChange` (array): errors history.
+    &#34;&#34;&#34;
+
+    m, n = A.shape
+    # numIterations is used for convergence of W,H
+    numIterationsWH = 10
+    numIterations = 10
+    # first fix W,H and solve Z
+    W = np.random.random((m, k)).reshape([k, m]).T
+    H = np.random.random((k, n)).reshape([n, k]).T
+    D = A-np.dot(W, H)
+    currentIteration = 1
+    Z = np.zeros((m, n))
+    prevErr = np.linalg.norm(D, ord=&#39;fro&#39;) + beta*np.linalg.norm(H, ord=1)
+    currentErr = prevErr-1
+    errChange = np.zeros((numIterations+1, 1))
+    # convergence is when A \approx WH
+    while currentIteration &lt; numIterations:
+        colnormdi = np.sqrt(np.sum(np.square(D), axis = 0))
+        colnormdi_factor = colnormdi-alpha
+        colnormdi_factor[colnormdi_factor &lt; 0] = 0
+        Z = np.divide(D, colnormdi)
+        Z = np.array(Z) * np.array(colnormdi_factor)
+        D = A-Z
+        W, H, _ = hals(D, W, H, k, 1e-6, numIterationsWH, beta)
+        D = A-np.dot(W, H)
+        if currentIteration &gt; 1:
+            prevErr = currentErr
+        errChange[currentIteration] = prevErr
+        currentErr = np.linalg.norm(D-Z, ord=&#39;fro&#39;) + alpha * np.sum(np.sqrt(np.sum(np.square(Z)))) + beta * np.linalg.norm(H, ord=1)
+        currentIteration = currentIteration + 1
+    errChange[currentIteration]=currentErr
+    return Z, W, H, errChange
+
+
+def hals(A, Winit, Hinit, k, tolerance, numIterations, beta):
+    &#34;&#34;&#34;
+    Function to minimize F(W,H) with respect to each column of W and H.
+    solves A=WH
+    A = mxn matrix
+    W = mxk
+    H = kxn
+    k = low rank
+    implementation of the algorithm2 from
+    http://www.bsp.brain.riken.jp/publications/2009/Cichocki-Phan-IEICE_col.pdf
+
+    ---
+
+    **Arguments** \n
+    `A` (array of shape (n_documents, n_words)): document-word matrix. \n
+    `Winit`(array of shape (n_documents, rank)): initial Term-Topic matrix. \n
+    `Hinit` (array of shape (rank, n_words)): initial Topic-Document matrix. \n
+    `k` (int): rank.\n
+    `tolerance` (float): stopping criteria.\n
+    `numIterations` (int): max number of iterations. The algorithm stops when met the tolerance or numIterations.\n
+    `beta` (float): approximation parameter.
+
+    ---
+
+
+    **Returns** \n
+    `W` (array of shape (n_documents, rank)): Term-Topic matrix. \n
+    `H` (array of shape (rank, n_words)): Topic-Document matrix. \n
+    `errChange` (array): errors history.
+    &#34;&#34;&#34;
+    W = Winit
+    H = Hinit
+    prevError = np.linalg.norm(A-np.dot(W, H), ord=&#39;fro&#39;)
+    currError = prevError+1
+    currentIteration = 1
+    errChange = np.zeros((1, numIterations+1))[0]
+    while abs(currError-prevError) &gt; tolerance and currentIteration &lt; numIterations:
+        # update W
+        AHt = np.dot(A, np.transpose(H))
+        HHt = np.dot(H, np.transpose(H))
+        # to avoid divide by zero error
+        HHtDiag = np.array(np.diag(HHt))
+        HHtDiag[HHtDiag == 0] = np.finfo(float).eps
+        for x in range(0, k, 1):
+            Wx = W[:, x] + (np.array(np.transpose(AHt[:, x]))[0]-np.dot(W, HHt[:, x]))/HHtDiag[x]
+            Wx[Wx &lt; np.finfo(float).eps] = np.finfo(float).eps
+            W[:, x] = Wx
+        # update H
+        WtA = np.dot(np.transpose(W), A)
+        WtW = np.dot(np.transpose(W), W)
+        # to avoid divide by zero error
+        WtWDiag = np.array(np.diag(WtW))
+        WtWDiag[WtWDiag == 0] = np.finfo(float).eps
+        for x in range(0, k, 1):
+            Hx = H[x, :] + (np.array(WtA[x, :])-np.dot(WtW[x, :], H))/WtWDiag[x]
+            Hx = Hx-beta/WtWDiag[x]
+            Hx[Hx &lt; np.finfo(float).eps] = np.finfo(float).eps
+            H[x, :] = Hx
+        if currentIteration &gt; 1:
+            prevError = currError
+        errChange[currentIteration] = prevError
+        currError = np.linalg.norm(A-np.dot(W, H), ord=&#39;fro&#39;)
+        currentIteration = currentIteration+1
+    return W, H, errChange
+
+
+def svd(bag_of_words):
+    &#34;&#34;&#34;
+    Function to use SVD for getting outlier_matrix. It uses SVD from np.linalg and result representation\
+    from the paper [Outlier Detection for Text Data: An Extended Version](https://arxiv.org/pdf/1701.01325.pdf) (page 8)
+
+    ---
+
+    **Arguments**\n
+    `bag_of_words` (array of shape (n_documents, n_words)): document-word matrix.
+
+    ---
+
+    **Returns**\n
+    `outlier_matrix` (array of shape (n_documents, n_words)): outliers matrix.
+    &#34;&#34;&#34;
+
+    _, S, V = np.linalg.svd(bag_of_words, full_matrices=False)
+    outlier_matrix = np.dot(np.sqrt(np.diag(S)), V)
+    return outlier_matrix
+
+
+def outlier_detection(split_search_results_df, method=&#34;tonmf&#34;, norm=&#34;l2&#34;, stop_words_lang=&#34;english&#34;, Z_threshold=3, label_col=&#34;topic_name&#34;, text_col=&#34;text&#34;):
+    &#34;&#34;&#34;
+    Function used to detect outliers in list of texts
+
+    ---
+
+    **Arguments**\n
+    `split_search_results_df` (DataFrame): DataFrame with search results split on sentences and which contains\
+    *topic_name*, *document_id*, *text*, *sentence*.\n
+    `method` (string): name of method to use for outlier detection. It should be &#39;rpca&#39;, &#39;tonmf&#39; or &#39;svd&#39;.\
+    Default value = &#39;tonmf&#39;. [This](https://github.com/dganguli/robust-pca) RPCA implementation is used. Python\
+    implementation of TONMF based on [Outlier Detection for Text Data: An Extended Version](https://arxiv.org/pdf/1701.01325.pdf)\
+    is used.\n
+    `norm` (string): the norm to use to normalize. It should be &#39;l1&#39;, &#39;l2&#39; or &#39;max&#39;. Default value = &#39;l2&#39;.\
+    sklearn.preprocessing.normalize is used.\n
+    `Z_threshold` (int): Threshold to filter outlier Z score. Default value = 3.\n
+    `stop_words_lang` (String): Language for the stop words filtering. Default value = &#34;english&#34;.\n
+    `label_col` (String): Name of the label column in data frame. Default value = &#34;topic_name&#34;.\n
+    `text_col` (String): Name of the text column in data frame. Default value = &#34;text&#34;.\n
+
+    ---
+
+    **Returns**\n
+    `normal_texts_df` (DataFrame): DataFrame which contains *topic_name*, *document_id*, *text*, *sentence*.\n
+    `outlier_texts_df` (DataFrame): DataFrame which contains *topic_name*, *document_id*, *text*, *sentence*.
+    &#34;&#34;&#34;
+
+    nltk.download(&#39;stopwords&#39;)
+    stop = stopwords.words(stop_words_lang)
+
+    split_search_results_df[&#39;words&#39;] = split_search_results_df[text_col].apply(
+        lambda x: &#39; &#39;.join([word for word in x.split() if word.lower() not in stop]))
+
+    for topic in split_search_results_df[label_col].unique():
+        # prepared_input_texts_df = split_search_results_df[split_search_results_df[&#39;topic_name&#39;] == topic].copy()
+
+        # getting bag_of_words
+        bag_of_words = CountVectorizer().fit_transform(split_search_results_df[split_search_results_df[label_col] == topic][&#39;words&#39;]).todense()
+
+        if method == &#39;rpca&#39;:
+            outlier_matrix = rpca_implementation(bag_of_words)
+        elif method == &#39;tonmf&#39;:
+            outlier_matrix, _, _, _ = tonmf(bag_of_words, k=10, alpha=10, beta=0.05)
+        elif method == &#39;svd&#39;:
+            outlier_matrix = svd(bag_of_words.T)
+            outlier_matrix = outlier_matrix.T
+        else:
+            throw(&#39;method should be in list [&#34;tonmf&#34;, &#34;rpca&#34;, &#34;svd&#34;]&#39;)
+
+        if norm == &#34;l2&#34; or norm == &#34;l1&#34; or norm == &#34;max&#34;:
+            _, y_pred = preprocessing.normalize(outlier_matrix, axis=1, norm=norm, return_norm=True)
+        else:
+            throw(&#39;norm should be in list [&#34;l1&#34;, &#34;l2&#34;, &#34;max&#34;]&#39;)
+
+        # Z-score method for threshold calculation: https://stackoverflow.com/questions/41290525/outliers-using-rpca
+        Z = stats.zscore(y_pred)
+        split_search_results_df.loc[(split_search_results_df[label_col] == topic),&#39;Z_score&#39;] = np.abs(Z)
+
+    split_search_results_df[&#39;Z_score&#39;] = split_search_results_df[&#39;Z_score&#39;].fillna(0)
+    return split_search_results_df[split_search_results_df[&#39;Z_score&#39;] &lt;= Z_threshold], split_search_results_df[split_search_results_df[&#39;Z_score&#39;] &gt; Z_threshold]</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="textcl.outliers_detection.hals"><code class="name flex">
+<span>def <span class="ident">hals</span></span>(<span>A, Winit, Hinit, k, tolerance, numIterations, beta)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to minimize F(W,H) with respect to each column of W and H.
+solves A=WH
+A = mxn matrix
+W = mxk
+H = kxn
+k = low rank
+implementation of the algorithm2 from
+<a href="http://www.bsp.brain.riken.jp/publications/2009/Cichocki-Phan-IEICE_col.pdf">http://www.bsp.brain.riken.jp/publications/2009/Cichocki-Phan-IEICE_col.pdf</a></p>
+<hr>
+<p><strong>Arguments</strong> </p>
+<p><code>A</code> (array of shape (n_documents, n_words)): document-word matrix. </p>
+<p><code>Winit</code>(array of shape (n_documents, rank)): initial Term-Topic matrix. </p>
+<p><code>Hinit</code> (array of shape (rank, n_words)): initial Topic-Document matrix. </p>
+<p><code>k</code> (int): rank.</p>
+<p><code>tolerance</code> (float): stopping criteria.</p>
+<p><code>numIterations</code> (int): max number of iterations. The algorithm stops when met the tolerance or numIterations.</p>
+<p><code>beta</code> (float): approximation parameter.</p>
+<hr>
+<p><strong>Returns</strong> </p>
+<p><code>W</code> (array of shape (n_documents, rank)): Term-Topic matrix. </p>
+<p><code>H</code> (array of shape (rank, n_words)): Topic-Document matrix. </p>
+<p><code>errChange</code> (array): errors history.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hals(A, Winit, Hinit, k, tolerance, numIterations, beta):
+    &#34;&#34;&#34;
+    Function to minimize F(W,H) with respect to each column of W and H.
+    solves A=WH
+    A = mxn matrix
+    W = mxk
+    H = kxn
+    k = low rank
+    implementation of the algorithm2 from
+    http://www.bsp.brain.riken.jp/publications/2009/Cichocki-Phan-IEICE_col.pdf
+
+    ---
+
+    **Arguments** \n
+    `A` (array of shape (n_documents, n_words)): document-word matrix. \n
+    `Winit`(array of shape (n_documents, rank)): initial Term-Topic matrix. \n
+    `Hinit` (array of shape (rank, n_words)): initial Topic-Document matrix. \n
+    `k` (int): rank.\n
+    `tolerance` (float): stopping criteria.\n
+    `numIterations` (int): max number of iterations. The algorithm stops when met the tolerance or numIterations.\n
+    `beta` (float): approximation parameter.
+
+    ---
+
+
+    **Returns** \n
+    `W` (array of shape (n_documents, rank)): Term-Topic matrix. \n
+    `H` (array of shape (rank, n_words)): Topic-Document matrix. \n
+    `errChange` (array): errors history.
+    &#34;&#34;&#34;
+    W = Winit
+    H = Hinit
+    prevError = np.linalg.norm(A-np.dot(W, H), ord=&#39;fro&#39;)
+    currError = prevError+1
+    currentIteration = 1
+    errChange = np.zeros((1, numIterations+1))[0]
+    while abs(currError-prevError) &gt; tolerance and currentIteration &lt; numIterations:
+        # update W
+        AHt = np.dot(A, np.transpose(H))
+        HHt = np.dot(H, np.transpose(H))
+        # to avoid divide by zero error
+        HHtDiag = np.array(np.diag(HHt))
+        HHtDiag[HHtDiag == 0] = np.finfo(float).eps
+        for x in range(0, k, 1):
+            Wx = W[:, x] + (np.array(np.transpose(AHt[:, x]))[0]-np.dot(W, HHt[:, x]))/HHtDiag[x]
+            Wx[Wx &lt; np.finfo(float).eps] = np.finfo(float).eps
+            W[:, x] = Wx
+        # update H
+        WtA = np.dot(np.transpose(W), A)
+        WtW = np.dot(np.transpose(W), W)
+        # to avoid divide by zero error
+        WtWDiag = np.array(np.diag(WtW))
+        WtWDiag[WtWDiag == 0] = np.finfo(float).eps
+        for x in range(0, k, 1):
+            Hx = H[x, :] + (np.array(WtA[x, :])-np.dot(WtW[x, :], H))/WtWDiag[x]
+            Hx = Hx-beta/WtWDiag[x]
+            Hx[Hx &lt; np.finfo(float).eps] = np.finfo(float).eps
+            H[x, :] = Hx
+        if currentIteration &gt; 1:
+            prevError = currError
+        errChange[currentIteration] = prevError
+        currError = np.linalg.norm(A-np.dot(W, H), ord=&#39;fro&#39;)
+        currentIteration = currentIteration+1
+    return W, H, errChange</code></pre>
+</details>
+</dd>
+<dt id="textcl.outliers_detection.outlier_detection"><code class="name flex">
+<span>def <span class="ident">outlier_detection</span></span>(<span>split_search_results_df, method='tonmf', norm='l2', stop_words_lang='english', Z_threshold=3, label_col='topic_name', text_col='text')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function used to detect outliers in list of texts</p>
+<hr>
+<p><strong>Arguments</strong></p>
+<p><code>split_search_results_df</code> (DataFrame): DataFrame with search results split on sentences and which contains
+<em>topic_name</em>, <em>document_id</em>, <em>text</em>, <em>sentence</em>.</p>
+<p><code>method</code> (string): name of method to use for outlier detection. It should be 'rpca', 'tonmf' or 'svd'.
+Default value = 'tonmf'. <a href="https://github.com/dganguli/robust-pca">This</a> RPCA implementation is used. Python
+implementation of TONMF based on <a href="https://arxiv.org/pdf/1701.01325.pdf">Outlier Detection for Text Data: An Extended Version</a>
+is used.</p>
+<p><code>norm</code> (string): the norm to use to normalize. It should be 'l1', 'l2' or 'max'. Default value = 'l2'.
+sklearn.preprocessing.normalize is used.</p>
+<p><code>Z_threshold</code> (int): Threshold to filter outlier Z score. Default value = 3.</p>
+<p><code>stop_words_lang</code> (String): Language for the stop words filtering. Default value = "english".</p>
+<p><code>label_col</code> (String): Name of the label column in data frame. Default value = "topic_name".</p>
+<p><code>text_col</code> (String): Name of the text column in data frame. Default value = "text".</p>
+<hr>
+<p><strong>Returns</strong></p>
+<p><code>normal_texts_df</code> (DataFrame): DataFrame which contains <em>topic_name</em>, <em>document_id</em>, <em>text</em>, <em>sentence</em>.</p>
+<p><code>outlier_texts_df</code> (DataFrame): DataFrame which contains <em>topic_name</em>, <em>document_id</em>, <em>text</em>, <em>sentence</em>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def outlier_detection(split_search_results_df, method=&#34;tonmf&#34;, norm=&#34;l2&#34;, stop_words_lang=&#34;english&#34;, Z_threshold=3, label_col=&#34;topic_name&#34;, text_col=&#34;text&#34;):
+    &#34;&#34;&#34;
+    Function used to detect outliers in list of texts
+
+    ---
+
+    **Arguments**\n
+    `split_search_results_df` (DataFrame): DataFrame with search results split on sentences and which contains\
+    *topic_name*, *document_id*, *text*, *sentence*.\n
+    `method` (string): name of method to use for outlier detection. It should be &#39;rpca&#39;, &#39;tonmf&#39; or &#39;svd&#39;.\
+    Default value = &#39;tonmf&#39;. [This](https://github.com/dganguli/robust-pca) RPCA implementation is used. Python\
+    implementation of TONMF based on [Outlier Detection for Text Data: An Extended Version](https://arxiv.org/pdf/1701.01325.pdf)\
+    is used.\n
+    `norm` (string): the norm to use to normalize. It should be &#39;l1&#39;, &#39;l2&#39; or &#39;max&#39;. Default value = &#39;l2&#39;.\
+    sklearn.preprocessing.normalize is used.\n
+    `Z_threshold` (int): Threshold to filter outlier Z score. Default value = 3.\n
+    `stop_words_lang` (String): Language for the stop words filtering. Default value = &#34;english&#34;.\n
+    `label_col` (String): Name of the label column in data frame. Default value = &#34;topic_name&#34;.\n
+    `text_col` (String): Name of the text column in data frame. Default value = &#34;text&#34;.\n
+
+    ---
+
+    **Returns**\n
+    `normal_texts_df` (DataFrame): DataFrame which contains *topic_name*, *document_id*, *text*, *sentence*.\n
+    `outlier_texts_df` (DataFrame): DataFrame which contains *topic_name*, *document_id*, *text*, *sentence*.
+    &#34;&#34;&#34;
+
+    nltk.download(&#39;stopwords&#39;)
+    stop = stopwords.words(stop_words_lang)
+
+    split_search_results_df[&#39;words&#39;] = split_search_results_df[text_col].apply(
+        lambda x: &#39; &#39;.join([word for word in x.split() if word.lower() not in stop]))
+
+    for topic in split_search_results_df[label_col].unique():
+        # prepared_input_texts_df = split_search_results_df[split_search_results_df[&#39;topic_name&#39;] == topic].copy()
+
+        # getting bag_of_words
+        bag_of_words = CountVectorizer().fit_transform(split_search_results_df[split_search_results_df[label_col] == topic][&#39;words&#39;]).todense()
+
+        if method == &#39;rpca&#39;:
+            outlier_matrix = rpca_implementation(bag_of_words)
+        elif method == &#39;tonmf&#39;:
+            outlier_matrix, _, _, _ = tonmf(bag_of_words, k=10, alpha=10, beta=0.05)
+        elif method == &#39;svd&#39;:
+            outlier_matrix = svd(bag_of_words.T)
+            outlier_matrix = outlier_matrix.T
+        else:
+            throw(&#39;method should be in list [&#34;tonmf&#34;, &#34;rpca&#34;, &#34;svd&#34;]&#39;)
+
+        if norm == &#34;l2&#34; or norm == &#34;l1&#34; or norm == &#34;max&#34;:
+            _, y_pred = preprocessing.normalize(outlier_matrix, axis=1, norm=norm, return_norm=True)
+        else:
+            throw(&#39;norm should be in list [&#34;l1&#34;, &#34;l2&#34;, &#34;max&#34;]&#39;)
+
+        # Z-score method for threshold calculation: https://stackoverflow.com/questions/41290525/outliers-using-rpca
+        Z = stats.zscore(y_pred)
+        split_search_results_df.loc[(split_search_results_df[label_col] == topic),&#39;Z_score&#39;] = np.abs(Z)
+
+    split_search_results_df[&#39;Z_score&#39;] = split_search_results_df[&#39;Z_score&#39;].fillna(0)
+    return split_search_results_df[split_search_results_df[&#39;Z_score&#39;] &lt;= Z_threshold], split_search_results_df[split_search_results_df[&#39;Z_score&#39;] &gt; Z_threshold]</code></pre>
+</details>
+</dd>
+<dt id="textcl.outliers_detection.rpca_implementation"><code class="name flex">
+<span>def <span class="ident">rpca_implementation</span></span>(<span>bag_of_words)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to use RPCA for getting outlier_matrix. It uses <a href="https://github.com/dganguli/robust-pca">this</a> RPCA implementation</p>
+<hr>
+<p><strong>Arguments</strong></p>
+<p><code>bag_of_words</code> (array of shape (n_documents, n_words)): document-word matrix.</p>
+<hr>
+<p><strong>Returns</strong></p>
+<p><code>outlier_matrix</code> (array of shape (n_documents, n_words)): outliers matrix.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def rpca_implementation(bag_of_words):
+    &#34;&#34;&#34;
+    Function to use RPCA for getting outlier_matrix. It uses [this](https://github.com/dganguli/robust-pca) RPCA implementation
+
+    ---
+
+    **Arguments**\n
+    `bag_of_words` (array of shape (n_documents, n_words)): document-word matrix.
+
+    ---
+
+    **Returns**\n
+    `outlier_matrix` (array of shape (n_documents, n_words)): outliers matrix.
+    &#34;&#34;&#34;
+
+    rpca = R_pca(np.array(bag_of_words))
+    _, outlier_matrix = rpca.fit(max_iter=10000, iter_print=100)
+    return outlier_matrix</code></pre>
+</details>
+</dd>
+<dt id="textcl.outliers_detection.svd"><code class="name flex">
+<span>def <span class="ident">svd</span></span>(<span>bag_of_words)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to use SVD for getting outlier_matrix. It uses SVD from np.linalg and result representation
+from the paper <a href="https://arxiv.org/pdf/1701.01325.pdf">Outlier Detection for Text Data: An Extended Version</a> (page 8)</p>
+<hr>
+<p><strong>Arguments</strong></p>
+<p><code>bag_of_words</code> (array of shape (n_documents, n_words)): document-word matrix.</p>
+<hr>
+<p><strong>Returns</strong></p>
+<p><code>outlier_matrix</code> (array of shape (n_documents, n_words)): outliers matrix.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def svd(bag_of_words):
+    &#34;&#34;&#34;
+    Function to use SVD for getting outlier_matrix. It uses SVD from np.linalg and result representation\
+    from the paper [Outlier Detection for Text Data: An Extended Version](https://arxiv.org/pdf/1701.01325.pdf) (page 8)
+
+    ---
+
+    **Arguments**\n
+    `bag_of_words` (array of shape (n_documents, n_words)): document-word matrix.
+
+    ---
+
+    **Returns**\n
+    `outlier_matrix` (array of shape (n_documents, n_words)): outliers matrix.
+    &#34;&#34;&#34;
+
+    _, S, V = np.linalg.svd(bag_of_words, full_matrices=False)
+    outlier_matrix = np.dot(np.sqrt(np.diag(S)), V)
+    return outlier_matrix</code></pre>
+</details>
+</dd>
+<dt id="textcl.outliers_detection.tonmf"><code class="name flex">
+<span>def <span class="ident">tonmf</span></span>(<span>A, k, alpha, beta)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function to use TONMF for getting outlier_matrix. Solves the equation
+A = ||A-Z-WH||_F^2 + alpha ||Z||_2,1 + beta ||H||_1
+A is a sparse matrix of size mxn
+Z matrix is the outlier matrix.</p>
+<hr>
+<p><strong>Arguments</strong></p>
+<p><code>A</code> (array of shape (n_documents, n_words)): document-word matrix.</p>
+<p><code>k</code> (int): rank.</p>
+<p><code>alpha</code> (float): defines the weight for the outlier matrix Z.</p>
+<p><code>beta</code> (float): approximation parameter.</p>
+<hr>
+<p><strong>Returns</strong></p>
+<p><code>Z</code> (array of shape (n_documents, n_words)): Outlier matrix.</p>
+<p><code>W</code> (array of shape (n_documents, rank)): Term-Topic matrix.</p>
+<p><code>H</code> (array of shape (rank, n_words)): Topic-Document matrix.</p>
+<p><code>errChange</code> (array): errors history.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tonmf(A, k, alpha, beta):
+    &#34;&#34;&#34;
+    Function to use TONMF for getting outlier_matrix. Solves the equation
+    A = ||A-Z-WH||_F^2 + alpha ||Z||_2,1 + beta ||H||_1
+    A is a sparse matrix of size mxn
+    Z matrix is the outlier matrix.
+
+    ---
+
+    **Arguments**\n
+    `A` (array of shape (n_documents, n_words)): document-word matrix.\n
+    `k` (int): rank.\n
+    `alpha` (float): defines the weight for the outlier matrix Z.\n
+    `beta` (float): approximation parameter.
+
+    ---
+
+    **Returns**\n
+    `Z` (array of shape (n_documents, n_words)): Outlier matrix.\n
+    `W` (array of shape (n_documents, rank)): Term-Topic matrix.\n
+    `H` (array of shape (rank, n_words)): Topic-Document matrix.\n
+    `errChange` (array): errors history.
+    &#34;&#34;&#34;
+
+    m, n = A.shape
+    # numIterations is used for convergence of W,H
+    numIterationsWH = 10
+    numIterations = 10
+    # first fix W,H and solve Z
+    W = np.random.random((m, k)).reshape([k, m]).T
+    H = np.random.random((k, n)).reshape([n, k]).T
+    D = A-np.dot(W, H)
+    currentIteration = 1
+    Z = np.zeros((m, n))
+    prevErr = np.linalg.norm(D, ord=&#39;fro&#39;) + beta*np.linalg.norm(H, ord=1)
+    currentErr = prevErr-1
+    errChange = np.zeros((numIterations+1, 1))
+    # convergence is when A \approx WH
+    while currentIteration &lt; numIterations:
+        colnormdi = np.sqrt(np.sum(np.square(D), axis = 0))
+        colnormdi_factor = colnormdi-alpha
+        colnormdi_factor[colnormdi_factor &lt; 0] = 0
+        Z = np.divide(D, colnormdi)
+        Z = np.array(Z) * np.array(colnormdi_factor)
+        D = A-Z
+        W, H, _ = hals(D, W, H, k, 1e-6, numIterationsWH, beta)
+        D = A-np.dot(W, H)
+        if currentIteration &gt; 1:
+            prevErr = currentErr
+        errChange[currentIteration] = prevErr
+        currentErr = np.linalg.norm(D-Z, ord=&#39;fro&#39;) + alpha * np.sum(np.sqrt(np.sum(np.square(Z)))) + beta * np.linalg.norm(H, ord=1)
+        currentIteration = currentIteration + 1
+    errChange[currentIteration]=currentErr
+    return Z, W, H, errChange</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="textcl.outliers_detection.R_pca"><code class="flex name class">
+<span>class <span class="ident">R_pca</span></span>
+<span>(</span><span>D, mu=None, lmbda=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>RPCA implementation from <a href="https://github.com/dganguli/robust-pca">this</a> source</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class R_pca:
+    &#34;&#34;&#34;
+    RPCA implementation from [this](https://github.com/dganguli/robust-pca) source
+    &#34;&#34;&#34;
+    def __init__(self, D, mu=None, lmbda=None):
+        self.D = D
+        self.S = np.zeros(self.D.shape)
+        self.Y = np.zeros(self.D.shape)
+
+        if mu:
+            self.mu = mu
+        else:
+            self.mu = np.prod(self.D.shape) / (4 * np.linalg.norm(self.D, ord=1))
+
+        self.mu_inv = 1 / self.mu
+
+        if lmbda:
+            self.lmbda = lmbda
+        else:
+            self.lmbda = 1 / np.sqrt(np.max(self.D.shape))
+
+    @staticmethod
+    def frobenius_norm(M):
+        return np.linalg.norm(M, ord=&#39;fro&#39;)
+
+    @staticmethod
+    def shrink(M, tau):
+        return np.sign(M) * np.maximum((np.abs(M) - tau), np.zeros(M.shape))
+
+    def svd_threshold(self, M, tau):
+        U, S, V = np.linalg.svd(M, full_matrices=False)
+        return np.dot(U, np.dot(np.diag(self.shrink(S, tau)), V))
+
+    def fit(self, tol=None, max_iter=1000, iter_print=100):
+        iter = 0
+        err = np.Inf
+        Sk = self.S
+        Yk = self.Y
+        Lk = np.zeros(self.D.shape)
+
+        if tol:
+            _tol = tol
+        else:
+            _tol = 1E-7 * self.frobenius_norm(self.D)
+
+        #this loop implements the principal component pursuit (PCP) algorithm
+        #located in the table on page 29 of https://arxiv.org/pdf/0912.3599.pdf
+        while (err &gt; _tol) and iter &lt; max_iter:
+            Lk = self.svd_threshold(
+                self.D - Sk + self.mu_inv * Yk, self.mu_inv)                            #this line implements step 3
+            Sk = self.shrink(
+                self.D - Lk + (self.mu_inv * Yk), self.mu_inv * self.lmbda)             #this line implements step 4
+            Yk = Yk + self.mu * (self.D - Lk - Sk)                                      #this line implements step 5
+            err = self.frobenius_norm(self.D - Lk - Sk)
+            iter += 1
+
+        self.L = Lk
+        self.S = Sk
+        return Lk, Sk</code></pre>
+</details>
+<h3>Static methods</h3>
+<dl>
+<dt id="textcl.outliers_detection.R_pca.frobenius_norm"><code class="name flex">
+<span>def <span class="ident">frobenius_norm</span></span>(<span>M)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def frobenius_norm(M):
+    return np.linalg.norm(M, ord=&#39;fro&#39;)</code></pre>
+</details>
+</dd>
+<dt id="textcl.outliers_detection.R_pca.shrink"><code class="name flex">
+<span>def <span class="ident">shrink</span></span>(<span>M, tau)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def shrink(M, tau):
+    return np.sign(M) * np.maximum((np.abs(M) - tau), np.zeros(M.shape))</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="textcl.outliers_detection.R_pca.fit"><code class="name flex">
+<span>def <span class="ident">fit</span></span>(<span>self, tol=None, max_iter=1000, iter_print=100)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fit(self, tol=None, max_iter=1000, iter_print=100):
+    iter = 0
+    err = np.Inf
+    Sk = self.S
+    Yk = self.Y
+    Lk = np.zeros(self.D.shape)
+
+    if tol:
+        _tol = tol
+    else:
+        _tol = 1E-7 * self.frobenius_norm(self.D)
+
+    #this loop implements the principal component pursuit (PCP) algorithm
+    #located in the table on page 29 of https://arxiv.org/pdf/0912.3599.pdf
+    while (err &gt; _tol) and iter &lt; max_iter:
+        Lk = self.svd_threshold(
+            self.D - Sk + self.mu_inv * Yk, self.mu_inv)                            #this line implements step 3
+        Sk = self.shrink(
+            self.D - Lk + (self.mu_inv * Yk), self.mu_inv * self.lmbda)             #this line implements step 4
+        Yk = Yk + self.mu * (self.D - Lk - Sk)                                      #this line implements step 5
+        err = self.frobenius_norm(self.D - Lk - Sk)
+        iter += 1
+
+    self.L = Lk
+    self.S = Sk
+    return Lk, Sk</code></pre>
+</details>
+</dd>
+<dt id="textcl.outliers_detection.R_pca.svd_threshold"><code class="name flex">
+<span>def <span class="ident">svd_threshold</span></span>(<span>self, M, tau)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def svd_threshold(self, M, tau):
+    U, S, V = np.linalg.svd(M, full_matrices=False)
+    return np.dot(U, np.dot(np.diag(self.shrink(S, tau)), V))</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="textcl" href="index.html">textcl</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="textcl.outliers_detection.hals" href="#textcl.outliers_detection.hals">hals</a></code></li>
+<li><code><a title="textcl.outliers_detection.outlier_detection" href="#textcl.outliers_detection.outlier_detection">outlier_detection</a></code></li>
+<li><code><a title="textcl.outliers_detection.rpca_implementation" href="#textcl.outliers_detection.rpca_implementation">rpca_implementation</a></code></li>
+<li><code><a title="textcl.outliers_detection.svd" href="#textcl.outliers_detection.svd">svd</a></code></li>
+<li><code><a title="textcl.outliers_detection.tonmf" href="#textcl.outliers_detection.tonmf">tonmf</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="textcl.outliers_detection.R_pca" href="#textcl.outliers_detection.R_pca">R_pca</a></code></h4>
+<ul class="">
+<li><code><a title="textcl.outliers_detection.R_pca.fit" href="#textcl.outliers_detection.R_pca.fit">fit</a></code></li>
+<li><code><a title="textcl.outliers_detection.R_pca.frobenius_norm" href="#textcl.outliers_detection.R_pca.frobenius_norm">frobenius_norm</a></code></li>
+<li><code><a title="textcl.outliers_detection.R_pca.shrink" href="#textcl.outliers_detection.R_pca.shrink">shrink</a></code></li>
+<li><code><a title="textcl.outliers_detection.R_pca.svd_threshold" href="#textcl.outliers_detection.R_pca.svd_threshold">svd_threshold</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
