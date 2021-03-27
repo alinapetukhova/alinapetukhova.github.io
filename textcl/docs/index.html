@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.9.2" />
 <title>textcl API documentation</title>
-<meta name="description" content="TextCL
-Introduction
-This package is aimed to clean text data for later usage in Natural Language Processing tasks. It can be used as an initial step …" />
+<meta name="description" content="TextCL …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -24,571 +22,92 @@ This package is aimed to clean text data for later usage in Natural Language Pro
 <h1 class="title">Package <code>textcl</code></h1>
 </header>
 <section id="section-intro">
-<h2 id="textcl">TextCL</h2>
-<h3 id="introduction">Introduction</h3>
-<p>This package is aimed to clean text data for later usage in Natural Language Processing tasks. It can be used as an initial step in text analysis, predictive, classification, or text generation models. </p>
-<p>The quality of that models strongly depends on the quality of input data. Common problems in the data sets:
-- If data are coming from the Optical character recognition platform (OCR) the tables and columns formatted text is usually not processed correctly and will add noise to the models.
-- Some parts of the big texts scopes may contain sentences from different languages rather than the target language of the model and have to be filtered.
-- When we are working with real word texts we can see that some sentences can be duplicated due to the usage of templates. For the text generation tasks, it can cause the overfitting of the model and duplication in the created texts or summaries.
-- Data set contains texts, that are different from the main topic (like weather forecaset in the accounting reports)</p>
-<hr>
-<h3 id="list-of-functions">List of functions</h3>
-<p>To be albe to solve pre-processing problems <strong>TextCL</strong> package includes following methods:
-- splitting texts into sentences
-- filtering sentences by language (to remove sentences from text not in the target language)
-- perplexity (to remove linguistically unconnected sentences, that can be produced by OCR modules. Example: <em>Sustainability Report 2019 36 3%?!353? 1. 5В°C 1} 33%.</em>)
-- Jaccard similarity (to remove duplicated sentences in the text)
-- unsupervised outlier detection (to detect texts, that are outside of the main data set topic destribution). It can be applied using one of the modes:
-- TONMF (block coordinate descent framework)
-<a href="https://arxiv.org/pdf/1701.01325.pdf">source article</a>,
-<a href="https://github.com/ramkikannan/outliernmf">matlab implementation</a>
-- RPCA (Robust Principal Component Analysis)
-<a href="https://arxiv.org/pdf/0912.3599.pdf">source article</a>
-<a href="https://github.com/dganguli/robust-pca">python implementation</a>
-- Singular value decomposition: Used implementation from numpy: np.linalg.svd</p>
-<hr>
-<h3 id="requirements">Requirements</h3>
-<p>Python &gt;= 3.6
-- flair&gt;=0.7
-- langdetect&gt;=1.0.8
-- pandas&gt;=1.0.3
-- lxml&gt;=4.6.2
-- protobuf&gt;=3.14.0
-- nltk&gt;=3.4.5</p>
-<hr>
-<h3 id="how-to-install">How to install</h3>
-<pre><code class="bash">git clone -b text-processing https://[USER]:[PASS]@github.com/alinapetukhova/textcl.git
-cd textcl
-pip install src/
+<h1 id="textcl">TextCL</h1>
+<p><a href="https://travis-ci.com/github/alinapetukhova/textcl"><img alt="Build Status" src="https://travis-ci.com/alinapetukhova/textcl.svg?branch=master"></a>
+<a href="https://codecov.io/gh/alinapetukhova/textcl"><img alt="codecov" src="https://codecov.io/gh/alinapetukhova/textcl/branch/master/graph/badge.svg?token=jgYuXyGGjS"></a>
+<a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a></p>
+<h2 id="introduction">Introduction</h2>
+<p>The <strong>TextCL</strong> package aims to clean text data for later use in Natural Language Processing tasks. It can be used as an initial step in text analysis as well as in predictive, classification or text generation models.</p>
+<p>The quality of the models strongly depends on the quality of the input data. Common problems in the data sets include:</p>
+<ul>
+<li>If data are coming from a optical character recognition (OCR) platform, text in tables and columns is usually not processed correctly and will add noise to the models.</li>
+<li>Some parts of large texts scopes may contain sentences from different languages rather than the target language of the model and have to be filtered out.</li>
+<li>Real-world texts often have duplicated sentences due to the use of templates. In text generation tasks, this can cause model overfitting and duplications in generated texts or summaries.</li>
+<li>Data sets may contain text that is different from the main topic, such as a weather forecast in an accounting report.</li>
+</ul>
+<h2 id="features">Features</h2>
+<p>The <strong>TextCL</strong> package allows the user to perform the following text pre-processing tasks:</p>
+<ul>
+<li>Split texts into sentences.</li>
+<li>Language filtering, for removing sentences from text not in the target language.</li>
+<li>Perplexity filtering, for removing linguistically unconnected sentences, that can be produced by OCR modules. For example: <code>Sustainability Report 2019 36 3%?!353? 1. 5В°C 1} 33%.</code></li>
+<li>Duplicate sentences filtering using Jaccard similarity, for removing duplicate sentences from the text.</li>
+<li>Unsupervised outlier detection for revealing texts that are outside of the main data set topic distribution. Four methods are included with package for this purpose:</li>
+<li>TONMF: Block Coordinate Descent Framework
+(<a href="https://arxiv.org/pdf/1701.01325.pdf">source article</a>,
+<a href="https://github.com/ramkikannan/outliernmf">matlab implementation</a>)</li>
+<li>RPCA: Robust Principal Component Analysis
+(<a href="https://arxiv.org/pdf/0912.3599.pdf">source article</a>,
+<a href="https://github.com/dganguli/robust-pca">python implementation</a>)</li>
+<li>SVD: Singular Value Decomposition
+(based on the <a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html">NumPy SVD implementation</a>)</li>
+</ul>
+<h2 id="documentation">Documentation</h2>
+<ul>
+<li><a href="https://alinapetukhova.github.io/textcl/docs/">TextCL's API documentation</a></li>
+<li><a href="https://nbviewer.jupyter.org/github/alinapetukhova/textcl/blob/master/examples/text_preprocessing_example.ipynb">Tutorial for the preprocessing functions</a></li>
+<li><a href="https://nbviewer.jupyter.org/github/alinapetukhova/textcl/blob/master/examples/outlier_detection_functions_plots_example.ipynb">Tutorial for the outlier detection functions</a></li>
+<li><a href="https://github.com/alinapetukhova/textcl/blob/master/doc/devguide.md">Developer's guide</a></li>
+</ul>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Python &gt;= 3.6</li>
+<li>flair &gt;= 0.7</li>
+<li>langdetect &gt;= 1.0.8</li>
+<li>numpy &gt;= 1.16.5, &lt; 1.20.0</li>
+<li>pandas &gt;= 1.0.3</li>
+<li>lxml &gt;= 4.6.2</li>
+<li>protobuf &gt;= 3.14.0</li>
+<li>nltk &gt;= 3.4.5</li>
+</ul>
+<h2 id="how-to-install">How to install</h2>
+<h3 id="from-pypi">From PyPI</h3>
+<pre><code class="text">pip install textcl
 </code></pre>
-<p><code>src/</code> is path to the package folder where file 'setup.py' is located.</p>
-<hr>
-<h3 id="usage-examples">Usage examples</h3>
-<p>Load the text data you want to process. It's necessary to have column <code>text</code> in the data (default name). If you don't have <code>text</code> column you will need to specify the name for <strong>split_into_sentences</strong> function using <code>text_col</code> parameter. Source file from this example structured as follows:</p>
-<table>
-<thead>
-<tr>
-<th align="left">id</th>
-<th align="left">topic_name</th>
-<th align="left">text</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">0</td>
-<td align="left">business</td>
-<td align="left">WorldCom bosses' $54m payout
-Ten former direc&hellip;</td>
-</tr>
-<tr>
-<td align="left">1</td>
-<td align="left">business</td>
-<td align="left">Profits slide at India's Dr Reddy
-Profits at &hellip;</td>
-</tr>
-<tr>
-<td align="left">2</td>
-<td align="left">business</td>
-<td align="left">Liberian economy starts to grow
-The Liberian &hellip;</td>
-</tr>
-<tr>
-<td align="left">3</td>
-<td align="left">business</td>
-<td align="left">Uluslararası Para Fonu (IMF), Liberya ekonomis&hellip;</td>
-</tr>
-<tr>
-<td align="left">4</td>
-<td align="left">entertainment</td>
-<td align="left">Singer Ian Brown 'in gig arrest'
-Former Stone&hellip;</td>
-</tr>
-<tr>
-<td align="left">5</td>
-<td align="left">entertainment</td>
-<td align="left">Blue beat U2 to top France honour
-Irish band &hellip;</td>
-</tr>
-<tr>
-<td align="left">6</td>
-<td align="left">entertainment</td>
-<td align="left">Housewives lift Channel 4 ratings
-The debut o&hellip;</td>
-</tr>
-<tr>
-<td align="left">7</td>
-<td align="left">entertainment</td>
-<td align="left">Домохозяйки подняли рейтинги канала 4 Дебют ам&hellip;</td>
-</tr>
-<tr>
-<td align="left">8</td>
-<td align="left">entertainment</td>
-<td align="left">Housewives Channel 4 reytinglerini yükseltti A&hellip;</td>
-</tr>
-<tr>
-<td align="left">9</td>
-<td align="left">politics</td>
-<td align="left">Observers to monitor UK election
-Ministers wi&hellip;</td>
-</tr>
-<tr>
-<td align="left">10</td>
-<td align="left">politics</td>
-<td align="left">Lib Dems highlight problem debt
-People vulner&hellip;</td>
-</tr>
-<tr>
-<td align="left">11</td>
-<td align="left">politics</td>
-<td align="left">Minister defends hunting ban law
-The law bann&hellip;</td>
-</tr>
-<tr>
-<td align="left">12</td>
-<td align="left">sport</td>
-<td align="left">Legendary Dutch boss Michels dies
-Legendary D&hellip;</td>
-</tr>
-<tr>
-<td align="left">13</td>
-<td align="left">sport</td>
-<td align="left">Connors boost for British tennis
-Former world&hellip;</td>
-</tr>
-<tr>
-<td align="left">14</td>
-<td align="left">sport</td>
-<td align="left">Sociedad set to rescue Mladenovic
-Rangers are&hellip;</td>
-</tr>
-<tr>
-<td align="left">15</td>
-<td align="left">tech</td>
-<td align="left">Mobile games come of age
-The BBC News website&hellip;</td>
-</tr>
-<tr>
-<td align="left">16</td>
-<td align="left">tech</td>
-<td align="left">PlayStation 3 processor unveiled
-The Cell pro&hellip;</td>
-</tr>
-<tr>
-<td align="left">17</td>
-<td align="left">tech</td>
-<td align="left">PC photo printers challenge printed&hellip;</td>
-</tr>
-<tr>
-<td align="left">18</td>
-<td align="left">tech</td>
-<td align="left">PC photo printers challenge pros
-Home printed&hellip;</td>
-</tr>
-<tr>
-<td align="left">19</td>
-<td align="left">tech</td>
-<td align="left">Example 43 t6 43 Table data 342 5 3.4. data cl&hellip;</td>
-</tr>
-<tr>
-<td align="left">20</td>
-<td align="left">tech</td>
-<td align="left">Janice Dean currently serves as senior meteoro&hellip;</td>
-</tr>
-</tbody>
-</table>
-<p>Import the package and pandas:</p>
-<pre><code class="Python">import textcl
-import pandas as pd
+<h3 id="from-sourcegithub">From source/GitHub</h3>
+<pre><code class="text">pip install git+https://github.com/alinapetukhova/textcl.git#egg=textcl
 </code></pre>
-<p>Get data from file:</p>
-<pre><code class="Python">input_texts_df = pd.read_csv(&quot;prepared_bbc_dataset.csv&quot;)
-</code></pre>
-<p>Split input texts into sentences:</p>
-<pre><code class="Python">split_input_texts_df = textcl.split_into_sentences(input_texts_df)
-</code></pre>
-<h5 id="filtering-on-language">Filtering on language</h5>
-<pre><code class="Python">split_input_texts_df = textcl.language_filtering(split_input_texts_df, threshold=0.99, language='en')
-</code></pre>
-<p>Result:</p>
-<table>
-<thead>
-<tr>
-<th align="left">id</th>
-<th align="left">text</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">0</td>
-<td align="left">WorldCom bosses' $54m payout
-Ten former direc&hellip;</td>
-</tr>
-<tr>
-<td align="left">1</td>
-<td align="left">Profits slide at India's Dr Reddy
-Profits at &hellip;</td>
-</tr>
-<tr>
-<td align="left">2</td>
-<td align="left">Liberian economy starts to grow
-The Liberian &hellip;</td>
-</tr>
-<tr>
-<td align="left">4</td>
-<td align="left">Singer Ian Brown 'in gig arrest'
-Former Stone&hellip;</td>
-</tr>
-<tr>
-<td align="left">5</td>
-<td align="left">Blue beat U2 to top France honour
-Irish band &hellip;</td>
-</tr>
-<tr>
-<td align="left">6</td>
-<td align="left">Housewives lift Channel 4 ratings
-The debut o&hellip;</td>
-</tr>
-<tr>
-<td align="left">9</td>
-<td align="left">Observers to monitor UK election
-Ministers wi&hellip;</td>
-</tr>
-<tr>
-<td align="left">10</td>
-<td align="left">Lib Dems highlight problem debt
-People vulner&hellip;</td>
-</tr>
-<tr>
-<td align="left">11</td>
-<td align="left">Minister defends hunting ban law
-The law bann&hellip;</td>
-</tr>
-<tr>
-<td align="left">12</td>
-<td align="left">Legendary Dutch boss Michels dies
-Legendary D&hellip;</td>
-</tr>
-<tr>
-<td align="left">13</td>
-<td align="left">Connors boost for British tennis
-Former world&hellip;</td>
-</tr>
-<tr>
-<td align="left">14</td>
-<td align="left">Sociedad set to rescue Mladenovic
-Rangers are&hellip;</td>
-</tr>
-<tr>
-<td align="left">15</td>
-<td align="left">Mobile games come of age
-The BBC News website&hellip;</td>
-</tr>
-<tr>
-<td align="left">16</td>
-<td align="left">PlayStation 3 processor unveiled
-The Cell pro&hellip;</td>
-</tr>
-<tr>
-<td align="left">17</td>
-<td align="left">PC photo printers challenge printed&hellip;</td>
-</tr>
-<tr>
-<td align="left">18</td>
-<td align="left">PC photo printers challenge pros
-Home printed&hellip;</td>
-</tr>
-<tr>
-<td align="left">19</td>
-<td align="left">data clear additional 78.0 long-term 43 those)</td>
-</tr>
-<tr>
-<td align="left">20</td>
-<td align="left">Janice Dean currently serves as senior meteoro&hellip;</td>
-</tr>
-</tbody>
-</table>
-<p>As we can see texts with id 8 (Turkish), 7 (Russian), 8 (Turkish) were removed.</p>
-<h5 id="filtering-on-jaccard-similarity">Filtering on Jaccard similarity</h5>
-<pre><code class="Python">split_input_texts_df = textcl.jaccard_sim_filtering(split_input_texts_df, threshold=0.8)
-</code></pre>
-<p>Result:</p>
-<table>
-<thead>
-<tr>
-<th align="left">id</th>
-<th align="left">text</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">0</td>
-<td align="left">WorldCom bosses' $54m payout
-Ten former direc&hellip;</td>
-</tr>
-<tr>
-<td align="left">1</td>
-<td align="left">Profits slide at India's Dr Reddy
-Profits at &hellip;</td>
-</tr>
-<tr>
-<td align="left">2</td>
-<td align="left">Liberian economy starts to grow
-The Liberian &hellip;</td>
-</tr>
-<tr>
-<td align="left">4</td>
-<td align="left">Singer Ian Brown 'in gig arrest'
-Former Stone&hellip;</td>
-</tr>
-<tr>
-<td align="left">5</td>
-<td align="left">Blue beat U2 to top France honour
-Irish band &hellip;</td>
-</tr>
-<tr>
-<td align="left">6</td>
-<td align="left">Housewives lift Channel 4 ratings
-The debut o&hellip;</td>
-</tr>
-<tr>
-<td align="left">9</td>
-<td align="left">Observers to monitor UK election
-Ministers wi&hellip;</td>
-</tr>
-<tr>
-<td align="left">10</td>
-<td align="left">Lib Dems highlight problem debt
-People vulner&hellip;</td>
-</tr>
-<tr>
-<td align="left">11</td>
-<td align="left">Minister defends hunting ban law
-The law bann&hellip;</td>
-</tr>
-<tr>
-<td align="left">12</td>
-<td align="left">Legendary Dutch boss Michels dies
-Legendary D&hellip;</td>
-</tr>
-<tr>
-<td align="left">13</td>
-<td align="left">Connors boost for British tennis
-Former world&hellip;</td>
-</tr>
-<tr>
-<td align="left">14</td>
-<td align="left">Sociedad set to rescue Mladenovic
-Rangers are&hellip;</td>
-</tr>
-<tr>
-<td align="left">15</td>
-<td align="left">Mobile games come of age
-The BBC News website&hellip;</td>
-</tr>
-<tr>
-<td align="left">16</td>
-<td align="left">PlayStation 3 processor unveiled
-The Cell pro&hellip;</td>
-</tr>
-<tr>
-<td align="left">18</td>
-<td align="left">PC photo printers challenge pros
-Home printed&hellip;</td>
-</tr>
-<tr>
-<td align="left">19</td>
-<td align="left">data clear additional 78.0 long-term 43 those)</td>
-</tr>
-<tr>
-<td align="left">20</td>
-<td align="left">Janice Dean currently serves as senior meteoro&hellip;</td>
-</tr>
-</tbody>
-</table>
-<p>Texts with id=17 was removed as it partially duplicates text with id=18.</p>
-<h5 id="filtering-on-perplexity-score">Filtering on perplexity score</h5>
-<pre><code class="Python">split_input_texts_df = tp.perplexity_filtering(split_input_texts_df, threshold=5)
-</code></pre>
-<p>Result:</p>
-<table>
-<thead>
-<tr>
-<th align="left">id</th>
-<th align="left">text</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">0</td>
-<td align="left">WorldCom bosses' $54m payout
-Ten former direc&hellip;</td>
-</tr>
-<tr>
-<td align="left">1</td>
-<td align="left">Profits slide at India's Dr Reddy
-Profits at &hellip;</td>
-</tr>
-<tr>
-<td align="left">2</td>
-<td align="left">Liberian economy starts to grow
-The Liberian &hellip;</td>
-</tr>
-<tr>
-<td align="left">4</td>
-<td align="left">Singer Ian Brown 'in gig arrest'
-Former Stone&hellip;</td>
-</tr>
-<tr>
-<td align="left">5</td>
-<td align="left">Blue beat U2 to top France honour
-Irish band &hellip;</td>
-</tr>
-<tr>
-<td align="left">6</td>
-<td align="left">Housewives lift Channel 4 ratings
-The debut o&hellip;</td>
-</tr>
-<tr>
-<td align="left">9</td>
-<td align="left">Observers to monitor UK election
-Ministers wi&hellip;</td>
-</tr>
-<tr>
-<td align="left">10</td>
-<td align="left">Lib Dems highlight problem debt
-People vulner&hellip;</td>
-</tr>
-<tr>
-<td align="left">11</td>
-<td align="left">Minister defends hunting ban law
-The law bann&hellip;</td>
-</tr>
-<tr>
-<td align="left">12</td>
-<td align="left">Legendary Dutch boss Michels dies
-Legendary D&hellip;</td>
-</tr>
-<tr>
-<td align="left">13</td>
-<td align="left">Connors boost for British tennis
-Former world&hellip;</td>
-</tr>
-<tr>
-<td align="left">14</td>
-<td align="left">Sociedad set to rescue Mladenovic
-Rangers are&hellip;</td>
-</tr>
-<tr>
-<td align="left">15</td>
-<td align="left">Mobile games come of age
-The BBC News website&hellip;</td>
-</tr>
-<tr>
-<td align="left">16</td>
-<td align="left">PlayStation 3 processor unveiled
-The Cell pro&hellip;</td>
-</tr>
-<tr>
-<td align="left">18</td>
-<td align="left">PC photo printers challenge pros
-Home printed&hellip;</td>
-</tr>
-<tr>
-<td align="left">20</td>
-<td align="left">Janice Dean currently serves as senior meteoro&hellip;</td>
-</tr>
-</tbody>
-</table>
-<p>Texts with id=19 was removed because sentence <code>data clear additional 78.0 long-term 43 those)</code> is not linguistically correct.</p>
-<h5 id="outliers-filtering-for-categoty-tech">Outliers filtering for categoty "tech"</h5>
-<pre><code class="Python">joined_texts = split_input_texts_df[[&quot;text&quot;, &quot;topic_name&quot;]].drop_duplicates()
-joined_texts, _ = textcl.outlier_detection(joined_texts[joined_texts.topic_name == 'tech'], method='rpca', Z_threshold=0.8)
-</code></pre>
-<p>Result:</p>
-<table>
-<thead>
-<tr>
-<th align="left">id</th>
-<th align="left">text</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">15</td>
-<td align="left">Mobile games come of age
-The BBC News website&hellip;</td>
-</tr>
-<tr>
-<td align="left">16</td>
-<td align="left">PlayStation 3 processor unveiled
-The Cell pro&hellip;</td>
-</tr>
-<tr>
-<td align="left">18</td>
-<td align="left">PC photo printers challenge pros
-Home printed&hellip;</td>
-</tr>
-</tbody>
-</table>
-<p>Texts with id=20 was removed because it describes a person profile instead of tech news.</p>
-<p>Also sentences grouped by topic can be joined to texts with the same number of sentences in them</p>
-<pre><code class="Python"># joining sentences into texts
-joined_texts = textcl.join_sentences_by_topics(split_input_texts_df)
-print(&quot;Num texts after joining: {}&quot;.format(len(joined_texts)))
-</code></pre>
-<p>After joining the result DataFrame will look like: </p>
-<table>
-<thead>
-<tr>
-<th align="left">topic_name</th>
-<th align="left">joined_sentences</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">topic1</td>
-<td align="left">joined_sentences1</td>
-</tr>
-<tr>
-<td align="left">topic1</td>
-<td align="left">joined_sentences2</td>
-</tr>
-<tr>
-<td align="left">topic2</td>
-<td align="left">joined_sentences1</td>
-</tr>
-<tr>
-<td align="left">topic2</td>
-<td align="left">joined_sentences2</td>
-</tr>
-<tr>
-<td align="left">&hellip;</td>
-<td align="left">&hellip;</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="developers-guide">Developer's guide</h3>
-<p>To generate documentation use (it will be placed into the docs folder):</p>
-<pre><code class="bash">pdoc3 --html --output-dir docs src/textcl/
-</code></pre>
-<p>where <code>scr/textcl/</code> is a path to folder contains <strong>init</strong>.py
-</p>
-<p>To run tests use in the root folder:</p>
-<pre><code class="bash">pytest
-</code></pre>
-<p>To check tests coverage use:</p>
-<pre><code class="bash">pytest --cov=textcl --cov-report=html
-</code></pre>
-<h3 id="license">License</h3>
+<h2 id="license">License</h2>
 <p><a href="LICENSE">MIT License</a></p>
+<h1 id="developers-guide">Developer's guide</h1>
+<p>Contributing to <strong>TextCL</strong> is easy. First, clone this repository and <code>cd</code> into the project's folder:</p>
+<pre><code class="text">git clone https://github.com/alinapetukhova/textcl.git
+cd textcl
+</code></pre>
+<p>Then create a virtual development environment to test and experiment with the package:</p>
+<pre><code class="text">python3 -m venv env
+source env/bin/activate
+pip install -e .
+</code></pre>
+<p>The <a href="https://docs.pytest.org/en/stable/">pytest</a>, <a href="https://pypi.org/project/pytest-cov/">pytest-cov</a> and <a href="https://pdoc3.github.io/pdoc/">pdoc3</a> packages are required for testing <strong>TextCL</strong> and generating its documentation:</p>
+<pre><code class="text">pip install pytest pytest-cov pdoc3
+</code></pre>
+<p>Running the unit tests can be done with the following command from the project's root folder:</p>
+<pre><code class="text">pytest
+</code></pre>
+<p>To check test coverage, execute the following command:</p>
+<pre><code class="text">pytest --cov=textcl --cov-report=html
+</code></pre>
+<p>Project documentation can be generated with <a href="https://pdoc3.github.io/pdoc/">pdoc3</a>. For example, running the following command in the project's root folder generates the HTML documentation and places it in the <code>docs</code> folder:</p>
+<pre><code class="text">pdoc3 --html --output-dir docs textcl/
+</code></pre>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">&#34;&#34;&#34;
-.. include:: ../../README.md
+.. include:: ../README.md
+.. include:: ../doc/devguide.md
 &#34;&#34;&#34;
 
 from textcl.preprocessing import *
@@ -621,20 +140,18 @@ from textcl.outliers_detection import *</code></pre>
 <ul>
 <li><a href="#textcl">TextCL</a><ul>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#list-of-functions">List of functions</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#documentation">Documentation</a></li>
 <li><a href="#requirements">Requirements</a></li>
-<li><a href="#how-to-install">How to install</a></li>
-<li><a href="#usage-examples">Usage examples</a><ul>
-<li><a href="#filtering-on-language">Filtering on language</a></li>
-<li><a href="#filtering-on-jaccard-similarity">Filtering on Jaccard similarity</a></li>
-<li><a href="#filtering-on-perplexity-score">Filtering on perplexity score</a></li>
-<li><a href="#outliers-filtering-for-categoty-tech">Outliers filtering for categoty "tech"</a></li>
+<li><a href="#how-to-install">How to install</a><ul>
+<li><a href="#from-pypi">From PyPI</a></li>
+<li><a href="#from-sourcegithub">From source/GitHub</a></li>
 </ul>
 </li>
-<li><a href="#developers-guide">Developer's guide</a></li>
 <li><a href="#license">License</a></li>
 </ul>
 </li>
+<li><a href="#developers-guide">Developer's guide</a></li>
 </ul>
 </div>
 <ul id="index">
