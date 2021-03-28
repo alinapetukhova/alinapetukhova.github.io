@@ -56,13 +56,12 @@
 <ul>
 <li><a href="https://alinapetukhova.github.io/textcl/docs/">TextCL's API documentation</a></li>
 <li><a href="https://nbviewer.jupyter.org/github/alinapetukhova/textcl/blob/master/examples/text_preprocessing_example.ipynb">Tutorial for the preprocessing functions</a></li>
-<li><a href="https://nbviewer.jupyter.org/github/alinapetukhova/textcl/blob/master/examples/outlier_detection_functions_plots_example.ipynb">Tutorial for the outlier detection functions</a></li>
 <li><a href="https://github.com/alinapetukhova/textcl/blob/master/doc/devguide.md">Developer's guide</a></li>
 </ul>
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>Python &gt;= 3.6</li>
-<li>flair &gt;= 0.7</li>
+<li>pytorch_pretrained_bert &gt;= 0.6.2</li>
 <li>langdetect &gt;= 1.0.8</li>
 <li>numpy &gt;= 1.16.5, &lt; 1.20.0</li>
 <li>pandas &gt;= 1.0.3</li>
@@ -72,34 +71,34 @@
 </ul>
 <h2 id="how-to-install">How to install</h2>
 <h3 id="from-pypi">From PyPI</h3>
-<pre><code class="text">pip install textcl
+<pre><code class="language-text">pip install textcl
 </code></pre>
 <h3 id="from-sourcegithub">From source/GitHub</h3>
-<pre><code class="text">pip install git+https://github.com/alinapetukhova/textcl.git#egg=textcl
+<pre><code class="language-text">pip install git+https://github.com/alinapetukhova/textcl.git#egg=textcl
 </code></pre>
 <h2 id="license">License</h2>
 <p><a href="LICENSE">MIT License</a></p>
 <h1 id="developers-guide">Developer's guide</h1>
 <p>Contributing to <strong>TextCL</strong> is easy. First, clone this repository and <code>cd</code> into the project's folder:</p>
-<pre><code class="text">git clone https://github.com/alinapetukhova/textcl.git
+<pre><code class="language-text">git clone https://github.com/alinapetukhova/textcl.git
 cd textcl
 </code></pre>
 <p>Then create a virtual development environment to test and experiment with the package:</p>
-<pre><code class="text">python3 -m venv env
+<pre><code class="language-text">python3 -m venv env
 source env/bin/activate
 pip install -e .
 </code></pre>
 <p>The <a href="https://docs.pytest.org/en/stable/">pytest</a>, <a href="https://pypi.org/project/pytest-cov/">pytest-cov</a> and <a href="https://pdoc3.github.io/pdoc/">pdoc3</a> packages are required for testing <strong>TextCL</strong> and generating its documentation:</p>
-<pre><code class="text">pip install pytest pytest-cov pdoc3
+<pre><code class="language-text">pip install pytest pytest-cov pdoc3
 </code></pre>
 <p>Running the unit tests can be done with the following command from the project's root folder:</p>
-<pre><code class="text">pytest
+<pre><code class="language-text">pytest
 </code></pre>
 <p>To check test coverage, execute the following command:</p>
-<pre><code class="text">pytest --cov=textcl --cov-report=html
+<pre><code class="language-text">pytest --cov=textcl --cov-report=html
 </code></pre>
 <p>Project documentation can be generated with <a href="https://pdoc3.github.io/pdoc/">pdoc3</a>. For example, running the following command in the project's root folder generates the HTML documentation and places it in the <code>docs</code> folder:</p>
-<pre><code class="text">pdoc3 --html --output-dir docs textcl/
+<pre><code class="language-text">pdoc3 --html --output-dir docs textcl/
 </code></pre>
 <details class="source">
 <summary>
