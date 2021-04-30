@@ -55,7 +55,7 @@
 <h2 id="documentation">Documentation</h2>
 <ul>
 <li><a href="https://alinapetukhova.github.io/textcl/docs/">TextCL's API documentation</a></li>
-<li><a href="https://nbviewer.jupyter.org/github/alinapetukhova/textcl/blob/master/examples/text_preprocessing_example.ipynb">Tutorial for the preprocessing functions</a></li>
+<li><a href="https://nbviewer.jupyter.org/github/alinapetukhova/textcl/blob/master/examples/text_preprocessing_tutorial.ipynb">Tutorial for the preprocessing functions</a></li>
 <li><a href="https://github.com/alinapetukhova/textcl/blob/master/doc/devguide.md">Developer's guide</a></li>
 </ul>
 <h2 id="requirements">Requirements</h2>
@@ -109,8 +109,15 @@ pip install -e .
 .. include:: ../doc/devguide.md
 &#34;&#34;&#34;
 
-from textcl.preprocessing import *
-from textcl.outliers_detection import *</code></pre>
+from .preprocessing import split_into_sentences
+from .preprocessing import language_filtering
+from .preprocessing import jaccard_sim_filtering
+from .preprocessing import perplexity_filtering
+from .preprocessing import join_sentences_by_label
+from .outliers_detection import outlier_detection
+from .outliers_detection import tonmf
+from .outliers_detection import rpca_implementation
+from .outliers_detection import svd</code></pre>
 </details>
 </section>
 <section>
@@ -118,11 +125,11 @@ from textcl.outliers_detection import *</code></pre>
 <dl>
 <dt><code class="name"><a title="textcl.outliers_detection" href="outliers_detection.html">textcl.outliers_detection</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>This module contains functions for performing unsupervised outlier detection.</p></div>
 </dd>
 <dt><code class="name"><a title="textcl.preprocessing" href="preprocessing.html">textcl.preprocessing</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>This module contains functions for general text preprocessing and filtering.</p></div>
 </dd>
 </dl>
 </section>
